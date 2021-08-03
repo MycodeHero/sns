@@ -21,6 +21,8 @@
   <meta property="product:price:amount" content="98.00" />
   <meta property="product:price:currency" content="USD" />
 	<title>hello world</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./share.js"></script>
 </head>
 <body>
 	<div id="facebook">
@@ -39,5 +41,104 @@
 		<a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fmycodehero.github.io%2Fsns%2Fsns.html">Pinterest Share Link</a>
 	</div>
 
+	<div class="share-msg">
+    <p class="shareBtns share">
+        <a data-share="facebook" class="share-facebook icon" href="javascript:;">facebook</a>
+        <a data-share="twitter" class="share-twitter icon" href="javascript:;">twitter</a>
+        <a data-share="google" class="share-google icon" href="javascript:;">google</a>
+        <a data-share="pinterest" class="share-pinterest icon" href="javascript:;">pinterest</a>
+    </p>
+</div>
+
+	<script>
+			window.fbAsyncInit = function() {
+				FB.init({
+						appId: '248020147141003',
+						status: true,
+						cookie: true,
+						oauth: true,
+						xfbml: true,
+						version: 'v2.6'
+				});
+		};
+
+			(function() {
+				var e = document.createElement('script');
+				e.type = 'text/javascript';
+				e.src = 'https://connect.facebook.net/en_US/all.js';
+				e.async = true;
+				document.body.appendChild(e);
+			}());
+	</script>
+
+	<script>
+
+		$(document.body).on('click', '.shareBtns a', function(e){
+		   shareProcess($(this).attr('data-share'));
+		});
+
+		const shareProcess = function(className){
+		   shareText = "Welcome share!"
+		   shareImg = "https://github.com/chenpenggood/share.js/blob/master/readImg/share.png?raw=true"
+		   twitterText = "share tool"
+		   description = "this is a share tool"
+		   switch(className){
+		     case "facebook":
+		     window.share.facebook.start({
+		       picture: shareImg,   //注意：新的facebook图片的分享有大变化，这里图片不能生效，下面会结束具体方法
+		       name: description,
+		       link: location.href, //注意：只能分享当前页面，否则fb抓取到指定页面的信息，这不是你想要的结果
+		       caption: "web name",
+		       description: description
+		     }, function(){
+		       shareSuccess('facebook');  //分享成功回调
+		     });
+		     break;
+			 
+		     case "twitter":
+		     window.share.twitter.start({
+		         link: location.href,
+		         text: description
+		     }, function(){
+		        shareSuccess('twiter');  //分享成功回调
+		     });
+		     break;
+			 
+		     case "google":
+		     window.share.google.start({
+		       link: location.href,
+		       text: description + location.href
+		     }, function(){
+		        shareSuccess('google');  //分享成功回调
+		     });
+		     break;
+			 
+		     case "pinterest":
+		     window.share.pinterest.start({
+		       link: location.href,
+		       image: shareImg,
+		       text: description + location.href
+		     }, function(){
+		        shareSuccess('pinterest');  //分享成功回调
+		     })
+		   }
+		}
+
+ 		const shareScucess = function(shareChannel){
+ 		   $.ajax({
+ 		     url: "成功回调的api地址",
+ 		     type: "get/post",
+ 		     dataType: "json",
+ 		     data: {
+ 		       shareChannel: shareChannel || ''
+ 		     },
+ 		     success: function(res){
+ 		        if(res.code === 2){
+ 		          '代码块'
+ 		        }
+ 		     }
+ 		   })
+ 		}
+		</script>
 </body>
 </html>
