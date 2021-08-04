@@ -46,9 +46,6 @@
 	<div class="share-msg">
     <p class="shareBtns share">
         <a data-share="facebook" class="share-facebook icon" href="javascript:;">facebook</a>
-        <a data-share="twitter" class="share-twitter icon" href="javascript:;">twitter</a>
-        <a data-share="google" class="share-google icon" href="javascript:;">google</a>
-        <a data-share="pinterest" class="share-pinterest icon" href="javascript:;">pinterest</a>
     </p>
 	</div>
 
@@ -96,24 +93,6 @@
 					 	alert('facebook share success')
 		     });
 		     break;
-			 
-		     case "twitter":
-		     window.share.twitter.start({
-		         link: location.href,
-		         text: description
-		     }, function(){
-					 	alert('twitter share success')
-		     });
-		     break;
-			 
-		     case "pinterest":
-		     window.share.pinterest.start({
-		       link: location.href,
-		       image: shareImg,
-		       text: description + location.href
-		     }, function(){
-					 alert('pinterest share success')
-		     })
 		   }
 		}
 
