@@ -7,7 +7,6 @@
 	<meta property="og:type" content="product" />
   <meta property="og:title" content="Technology Will Save Us Gamer DIY Kit" />
 	<meta property="og:image" content="https://pbs.twimg.com/card_img/1422369499399876608/35UQccv5?format=png&name=360x360" />
-  <meta property="og:description" content="One of the permanent installations in the collection of Humble Masterpieces at the Museum of Modern Art in New York, this DIY gamer kit from London-based company Technology Will Save Us is equal parts gadget and design classic. " />
   <meta property="og:url" content="http://www.urbanoutfitters.com/urban/catalog/productdetail.jsp?id=37075900"/>
   <meta property="og:site_name" content="Urban Outfitters" />
   <meta property="og:availability" content="instock" />
@@ -24,7 +23,9 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="./share.js"></script>
 </head>
-<body>
+	<!-- meta 隐藏 -->
+	<meta name="twitter:creator" content="@nickbilton" />
+
 	<div id="facebook">
 		<a href="https://www.facebook.com/dialog/share?_encoding=UTF8&app_id=248020147141003&display=popup&href=https%3A%2F%2Fmycodehero.github.io%2Fsns%2Fsns.html&redirect_uri=https%3A%2F%2Fmycodehero.github.io%2Fsns%2Fsns.html&hashtag=%junfeng">Facebook Share Link</a>	
 	</div>
@@ -48,8 +49,16 @@
         <a data-share="google" class="share-google icon" href="javascript:;">google</a>
         <a data-share="pinterest" class="share-pinterest icon" href="javascript:;">pinterest</a>
     </p>
-</div>
+	</div>
 
+	<script>
+		const meta = document.createElement('meta');
+		meta.name = "og:description"
+		setTimeout(() => {
+			meta.content = "One of the permanent installations in the collection of Humble Masterpieces at the Museum of Modern Art in New York, this DIY gamer kit from London-based company Technology Will Save Us is equal parts gadget and design classic. "
+			document.head.appendChild(meta)
+		}, 10000)
+	</script>
 	<script>
 			window.fbAsyncInit = function() {
 				FB.init({
