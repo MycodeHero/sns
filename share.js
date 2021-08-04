@@ -1,56 +1,22 @@
-/**
- * 绗笁鏂瑰垎浜�
- * @Author: yukai
- * @Date:   2016-07-22
- */
-
  window.share = {
 	facebook : {
-		init : function(callback){
-			var _this = this;
-		    $("body").append('<div id="fb-root">facebook</div>');
-		    window.fbAsyncInit = function() {
-		        FB.init({
-		            appId: '248020147141003',
-		            status: true,
-		            cookie: true,
-		            oauth: true,
-		            xfbml: true,
-		            version: 'v2.6'
-		        });
-		    };
-		    (function() {
-		        var e = document.createElement('script');
-		        e.type = 'text/javascript';
-		        e.src = 'https://connect.facebook.net/en_US/all.js';
-		        e.async = true;
-		        document.getElementById('fb-root').appendChild(e);
-		    }());
-
-
-		    if(typeof callback == 'function'){
-				callback();
-			}
-		},
-		start : function(cfg,callback){
+		start : function(cfg, callback){
 			var _this = this;
 			cfg = cfg || {};
 
 			FB.ui({
-                method: 'feed',
-                display: 'popup',
-                name : cfg.name,
-                picture : cfg.picture,
-                link : cfg.link,
-                caption : cfg.caption,
-                description : cfg.description
-            },function(response){
-                if(response && !response.error_code){ 
-			        if(typeof callback == 'function'){
-						callback();
-					}
-                }
-            });	  		          
+          method: 'feed',
+          display: 'popup',
+          name : cfg.name,
+          picture : cfg.picture,
+          link : cfg.link,
+          caption : cfg.caption,
+          description : cfg.description
+      }, function(response){
+				if(typeof callback === 'function') {
+					callback(response);
+				}
+      });	  		          
 		}
 	},	
 	twitter : {
